@@ -10,7 +10,7 @@ from cmk.base.check_legacy_includes.elphase import *  # pylint: disable=wildcard
 
 factory_settings["adicom_outphase_default_levels"] = {
     "voltage": (210, 200),
-    #"output_load": (80, 90),
+    "output_load": (80, 90),
 }
 
 
@@ -20,7 +20,7 @@ def parse_ups_adicom_outphase(info):
         parsed["Phase " + index] = {
             "voltage": (int(rawvolt) // 10, None),  # The actual precision does not appear to
             "current": (int(rawcurr) // 10, None),  # go beyond degrees, thus we drop the trailing 0
-        #    "output_load": (int(rawload), None),
+            "output_load": (int(rawload), None),
         }
     return parsed
 
