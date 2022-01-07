@@ -12,12 +12,12 @@
 factory_settings["ups_capacity_default_levels"] = {"battime": (0, 0), "capacity": (95, 90)}
 
 
-def inventory_ups_adicom_capacity(info):
+def inventory_ups_delphys_capacity(info):
     if len(info) > 0:
         return [(None, {})]
 
 
-def check_ups_adicom_capacity(item, params, info):
+def check_ups_delphys_capacity(item, params, info):
     # To support inventories with the old version
     # TODO This needs to be reworked. Defaults should not be coded into a check in such a fashion.
     if isinstance(params, tuple):  # old format with 2 params in tuple
@@ -66,9 +66,9 @@ def check_ups_adicom_capacity(item, params, info):
         yield 0, "On battery for %d min" % time_on_bat
 
 
-check_info["ups_adicom_capacity"] = {
-    "check_function": check_ups_adicom_capacity,
-    "inventory_function": inventory_ups_adicom_capacity,
+check_info["ups_delphys_capacity"] = {
+    "check_function": check_ups_delphys_capacity,
+    "inventory_function": inventory_ups_delphys_capacity,
     "default_levels_variable": "ups_capacity_default_levels",
     "service_description": "Battery capacity",
     "has_perfdata": True,

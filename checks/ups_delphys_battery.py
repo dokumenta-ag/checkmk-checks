@@ -83,16 +83,16 @@ check_info["ups_delphys_battery"] = {
     "default_levels_variable": "ups_delphys_battery_default_levels",
     "group": "ups_capacity",
     "snmp_info": (
-        ".1.3.6.1.4.1.2254.2.4.7",
+        ".1.3.6.1.4.1.4555.1.1.5.1.2.1",
         [
-            "1",  # dupsBatteryCondition
-            "4",  # dupsSecondsOnBattery
-            "5",  # dupsBatteryEstimatedTime
-            "8",  # dupsBatteryCapacity
-            "9",  # dupsBatteryTemperature
+            "1",  # adicomUpsBatteryStatus
+            "2",  # adicomUpsSecondsOnBattery
+            "3",  # adicomUpsEstimatedMinutesRemaining
+            "4",  # adicomUpsEstimatedChargeRemaining
+            "6",  # adicomUpsBatteryTemperature
         ],
     ),
-    "snmp_scan_function": lambda oid: oid(".1.3.6.1.2.1.1.2.0") == ".1.3.6.1.4.1.2254.2.4",
+    "snmp_scan_function": lambda oid: oid(".1.3.6.1.2.1.1.2.0") == ".1.3.6.1.4.1.4555.1.1.5",
 }
 
 
