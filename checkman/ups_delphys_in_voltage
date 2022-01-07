@@ -1,4 +1,4 @@
-title: Socomec Adicom UPS Device: Input Voltage
+title: Socomec DELPYS GP UPS Device: Input Voltage
 agents: snmp
 catalog: hw/power/socomec
 license: GPL

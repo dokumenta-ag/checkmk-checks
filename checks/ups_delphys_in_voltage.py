@@ -11,21 +11,21 @@ from cmk.base.check_legacy_includes.ups_in_voltage import *  # pylint: disable=w
 ups_in_voltage_default_levels = (210, 180)  # warning / critical
 
 
-def inventory_adicom_ups_in_voltage(info):
+def inventory_delphys_ups_in_voltage(info):
     if len(info) > 0:
         return [(x[0], "ups_in_voltage_default_levels") for x in info if int(x[1]) > 0]
 
 
-def check_adicom_ups_in_voltage(item, params, info):
+def check_delphys_ups_in_voltage(item, params, info):
     conv_info = []
     for line in info:
         conv_info.append([line[0], saveint(line[1]) // 10, line[1]])
     return check_ups_in_voltage(item, params, conv_info)
 
 
-check_info["ups_adicom_in_voltage"] = {
-    "inventory_function": inventory_adicom_ups_in_voltage,
-    "check_function": check_adicom_ups_in_voltage,
+check_info["ups_delphys_in_voltage"] = {
+    "inventory_function": inventory_delphys_ups_in_voltage,
+    "check_function": check_delphys_ups_in_voltage,
     "service_description": "IN voltage phase %s",
     "has_perfdata": True,
     "group": "evolt",

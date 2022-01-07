@@ -8,14 +8,14 @@
 # it might also remove variables needed for accessing discovery rulesets.
 from cmk.base.check_legacy_includes.temperature import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
-factory_settings["ups_adicom_battery_default_levels"] = {"capacity": (95, 90), "battime": (0, 0)}
+factory_settings["ups_delphys_battery_default_levels"] = {"capacity": (95, 90), "battime": (0, 0)}
 
 
-def inventory_ups_adicom_battery(info):
+def inventory_ups_delphys_battery(info):
     return [(None, {})]
 
 
-def check_ups_adicom_battery(item, params, info):
+def check_ups_delphys_battery(item, params, info):
     warn_left, crit_left = params["battime"]
     warn_perc, crit_perc = params["capacity"]
     for condition, elapsed_sec, remaining_min, capacity, _temperature in info:
@@ -76,11 +76,11 @@ def check_ups_adicom_battery(item, params, info):
         yield status, infotext
 
 
-check_info["ups_adicom_battery"] = {
-    "inventory_function": inventory_ups_adicom_battery,
-    "check_function": check_ups_adicom_battery,
+check_info["ups_delphys_battery"] = {
+    "inventory_function": inventory_ups_delphys_battery,
+    "check_function": check_ups_delphys_battery,
     "service_description": "Battery Charge",
-    "default_levels_variable": "ups_adicom_battery_default_levels",
+    "default_levels_variable": "ups_delphys_battery_default_levels",
     "group": "ups_capacity",
     "snmp_info": (
         ".1.3.6.1.4.1.2254.2.4.7",
@@ -96,22 +96,22 @@ check_info["ups_adicom_battery"] = {
 }
 
 
-def inventory_ups_adicom_battery_temp(info):
+def inventory_ups_delphys_battery_temp(info):
     for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
         if temperature:
             yield "Battery", {}
 
 
-def check_ups_adicom_battery_temp(item, params, info):
+def check_ups_delphys_battery_temp(item, params, info):
     for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
-        return check_temperature(int(temperature), params, "ups_adicom_battery_temp_%s" % item)
+        return check_temperature(int(temperature), params, "ups_delphys_battery_temp_%s" % item)
 
 
-check_info["ups_adicom_battery.temp"] = {
-    "inventory_function": inventory_ups_adicom_battery_temp,
-    "check_function": check_ups_adicom_battery_temp,
+check_info["ups_delphys_battery.temp"] = {
+    "inventory_function": inventory_ups_delphys_battery_temp,
+    "check_function": check_ups_delphys_battery_temp,
     "has_perfdata": True,
     "service_description": "Temperature %s",
     "group": "temperature",
-    "default_levels_variable": "ups_adicom_battery_temp_default_levels",
+    "default_levels_variable": "ups_delphys_battery_temp_default_levels",
 }

@@ -11,7 +11,7 @@ from cmk.base.check_legacy_includes.elphase import *  # pylint: disable=wildcard
 factory_settings["ups_modulys_inphase_default_levels"] = {}
 
 
-def parse_ups_modulys_inphase(info):
+def parse_ups_delphys_inphase(info):
     parsed = {}
     parsed["Phase 1"] = {
         "frequency": int(info[0][1]) / 10.0,
@@ -35,13 +35,13 @@ def parse_ups_modulys_inphase(info):
     return parsed
 
 
-check_info["ups_modulys_inphase"] = {
-    "parse_function": parse_ups_modulys_inphase,
+check_info["ups_delphys_inphase"] = {
+    "parse_function": parse_ups_delphys_inphase,
     "inventory_function": discover(),
     "check_function": check_elphase,
     "service_description": "Input %s",
     "has_perfdata": True,
-    "default_levels_variable": "ups_modulys_inphase_default_levels",
+    "default_levels_variable": "ups_delphys_inphase_default_levels",
     "group": "el_inphase",
     "snmp_info": (
         ".1.3.6.1.4.1.2254.2.4.4",

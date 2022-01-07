@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2022 DOKUMENTA AG - License: GNU General Public License v2
 
-def inventory_ups_adicom_alarms(info):
+def inventory_ups_delphys_alarms(info):
     if info:
         return [(None, None)]
 
 
-def check_ups_adicom_alarms(_no_item, _no_params, info):
+def check_ups_delphys_alarms(_no_item, _no_params, info):
     oiddef = {
         "1": (2, "Disconnect"),
         "2": (2, "Input power failure"),
@@ -50,9 +50,9 @@ def check_ups_adicom_alarms(_no_item, _no_params, info):
         yield 0, "No alarms"
 
 
-check_info["ups_adicom_alarms"] = {
-    "inventory_function": inventory_ups_adicom_alarms,
-    "check_function": check_ups_adicom_alarms,
+check_info["ups_delphys_alarms"] = {
+    "inventory_function": inventory_ups_delphys_alarms,
+    "check_function": check_ups_delphys_alarms,
     "service_description": "UPS Alarms",
     "snmp_info": (
         ".1.3.6.1.4.1.2254.2.4",
