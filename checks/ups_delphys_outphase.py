@@ -8,13 +8,13 @@
 # it might also remove variables needed for accessing discovery rulesets.
 from cmk.base.check_legacy_includes.elphase import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
-factory_settings["adicom_outphase_default_levels"] = {
+factory_settings["delphys_outphase_default_levels"] = {
     "voltage": (210, 200),
     "output_load": (80, 90),
 }
 
 
-def parse_ups_adicom_outphase(info):
+def parse_ups_delphys_outphase(info):
     parsed = {}
     for index, rawvolt, rawcurr, in info:
         parsed["Phase " + index] = {
@@ -25,18 +25,18 @@ def parse_ups_adicom_outphase(info):
     return parsed
 
 
-def check_ups_adicom_outphase(item, params, parsed):
+def check_ups_delphys_outphase(item, params, parsed):
     if not item.startswith("Phase"):
         # fix item names discovered before 1.2.7
         item = "Phase %s" % item
     return check_elphase(item, params, parsed)
 
 
-check_info["ups_adicom_outphase"] = {
-    "parse_function": parse_ups_adicom_outphase,
+check_info["ups_delphys_outphase"] = {
+    "parse_function": parse_ups_delphys_outphase,
     "inventory_function": discover(),
-    "check_function": check_ups_adicom_outphase,
-    "default_levels_variable": "adicom_outphase_default_levels",
+    "check_function": check_ups_delphys_outphase,
+    "default_levels_variable": "delphys_outphase_default_levels",
     "service_description": "Output %s",
     "has_perfdata": True,
     "group": "ups_outphase",

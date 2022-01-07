@@ -11,7 +11,7 @@ from cmk.base.check_legacy_includes.elphase import *  # pylint: disable=wildcard
 factory_settings["ups_socomecsts_outphase_default_levels"] = {}
 
 
-def parse_ups_socomecsts_outphase(info):
+def parse_ups_sts_outphase(info):
     parsed = {}
     parsed["Phase 1"] = {
         "frequency": int(info[0][1]) / 10.0,
@@ -41,13 +41,13 @@ def parse_ups_socomecsts_outphase(info):
     return parsed
 
 
-check_info["ups_socomecsts_outphase"] = {
-    "parse_function": parse_ups_socomecsts_outphase,
+check_info["ups_sts_outphase"] = {
+    "parse_function": parse_ups_sts_outphase,
     "inventory_function": discover(),
     "check_function": check_elphase,
     "service_description": "Output %s",
     "has_perfdata": True,
-    "default_levels_variable": "ups_socomecsts_outphase_default_levels",
+    "default_levels_variable": "ups_sts_outphase_default_levels",
     "group": "ups_outphase",
     "snmp_info": (
         ".1.3.6.1.4.1.4555.1.1.10.1.5",
