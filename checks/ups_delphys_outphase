@@ -37,7 +37,7 @@ check_info["ups_delphys_outphase"] = {
     "inventory_function": discover(),
     "check_function": check_ups_delphys_outphase,
     "default_levels_variable": "delphys_outphase_default_levels",
-    "service_description": "Output %s",
+    "service_description": "UPS Output %s",
     "has_perfdata": True,
     "group": "ups_outphase",
     # Phase Index, Voltage/dV, Current/dA

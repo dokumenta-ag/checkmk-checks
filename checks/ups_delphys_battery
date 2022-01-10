@@ -79,7 +79,7 @@ def check_ups_delphys_battery(item, params, info):
 check_info["ups_delphys_battery"] = {
     "inventory_function": inventory_ups_delphys_battery,
     "check_function": check_ups_delphys_battery,
-    "service_description": "Battery Charge",
+    "service_description": "UPS Battery Charge",
     "default_levels_variable": "ups_delphys_battery_default_levels",
     "group": "ups_capacity",
     "snmp_info": (
@@ -111,7 +111,7 @@ check_info["ups_delphys_battery.temp"] = {
     "inventory_function": inventory_ups_delphys_battery_temp,
     "check_function": check_ups_delphys_battery_temp,
     "has_perfdata": True,
-    "service_description": "%s Temperature",
+    "service_description": "UPS %s Temperature",
     "group": "temperature",
     "default_levels_variable": "ups_delphys_battery_temp_default_levels",
 }

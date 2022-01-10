@@ -45,7 +45,7 @@ check_info["ups_sts_outphase"] = {
     "parse_function": parse_ups_sts_outphase,
     "inventory_function": discover(),
     "check_function": check_elphase,
-    "service_description": "Output %s",
+    "service_description": "STS Output %s",
     "has_perfdata": True,
     "default_levels_variable": "ups_sts_outphase_default_levels",
     "group": "ups_outphase",
