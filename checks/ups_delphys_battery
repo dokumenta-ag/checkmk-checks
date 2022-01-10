@@ -104,7 +104,7 @@ def inventory_ups_delphys_battery_temp(info):
 
 def check_ups_delphys_battery_temp(item, params, info):
     for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
-        return check_temperature(int(temperature), params, "ups_delphys_battery_temp_%s" % item) // 10
+        return check_temperature(int(temperature) / 10, params, "ups_delphys_battery_temp_%s" % item)
 
 
 check_info["ups_delphys_battery.temp"] = {
