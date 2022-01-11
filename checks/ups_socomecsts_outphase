@@ -21,7 +21,7 @@ def parse_ups_sts_outphase(info):
         #"output_load": int(info[0][6]),
     }
 
-    if info[0][2] == "3":
+    if info[0][4] == "3":
         parsed["Phase 2"] = {
             "frequency": int(info[0][2]) / 10,
             "voltage": int(info[0][8]),
