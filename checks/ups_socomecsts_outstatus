@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Copyright (C) 2022 DOKUMENTA AG - License: GNU General Public License v2
+
+def inventory_ups_socomecsts_status(info):
+    if info:
+        return [(None, None)]
+
+
+def check_ups_socomecsts_status(_no_item, _no_params, info):
+
+    ups_socomecsts_source_states = {
+        1: (3, "Unknown"),
+        2: (0, "Output on switch 1"),
+        3: (0, "Output on switch 2"),
+        4: (2, "Output OFF"),
+    }
+
+    return ups_socomecsts_source_states[int(info[0][0])]
+
+
+check_info["ups_socomecsts_status"] = {
+    "inventory_function": inventory_ups_socomecsts_status,
+    "check_function": check_ups_socomecsts_status,
+    "service_description": "STS Output Status",
+    "snmp_info": (".1.3.6.1.4.1.4555.1.1.10.1.5", ["2"]),
+    "snmp_scan_function": lambda oid: "Transferschalter" in oid(".1.3.6.1.2.1.1.5.0"),
+}
