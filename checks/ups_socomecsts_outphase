@@ -17,25 +17,25 @@ def parse_ups_sts_outphase(info):
         "frequency": int(info[1][1]) // 10,
         "voltage": int(info[0][3]),
         "current": int(info[0][4]),
-        "power": int(info[0][5]) * 1000,
+        "power": int(info[0][5]) * int(info[0][6]) * 10,
         "output_load": int(info[0][4]) * 100 / 300,
     }
 
     if info[1][2] == "3":
         parsed["Phase 2"] = {
             "frequency": int(info[1][1]) // 10,
-            "voltage": int(info[0][6]),
-            "current": int(info[0][7]),
-            "power": int(info[0][8]) * 1000,
-            "output_load": int(info[0][7]) * 100 / 300,
+            "voltage": int(info[0][7]),
+            "current": int(info[0][8]),
+            "power": int(info[0][9]) * int(info[0][10]) * 10,
+            "output_load": int(info[0][8]) * 100 / 300,
         }
 
         parsed["Phase 3"] = {
             "frequency": int(info[1][1]) // 10,
-            "voltage": int(info[0][9]),
-            "current": int(info[0][10]),
-            "power": int(info[0][11]) * 1000,
-            "output_load": int(info[0][10]) * 100 / 300,
+            "voltage": int(info[0][11]),
+            "current": int(info[0][12]),
+            "power": int(info[0][13]) * int(info[0][14]) * 10,
+            "output_load": int(info[0][12]) * 100 / 300,
         }
     return parsed
 
@@ -52,17 +52,20 @@ check_info["ups_sts_outphase"] = {
         ".1.3.6.1.4.1.4555.1.1.10.1.5",
         [
             "2",  # stsOutputStatus
-            "3",  # stsOutputFrequency
+            "3",  # stsOutputFrequency (Hz)
             "5",  # stsOutputNumLines
-            "6.1.2.1",  # stsOutputVoltage1
-            "6.1.3.1",  # stsOutputCurrent1
-            "6.1.5.1",  # stsOutputPower1
-            "6.1.2.2",  # stsOutputVoltage2
-            "6.1.3.2",  # stsOutputCurrent2
-            "6.1.5.2",  # stsOutputPower2
-            "6.1.2.3",  # stsOutputVoltage3
-            "6.1.3.3",  # stsOutputCurrent3
-            "6.1.5.3",  # stsOutputPower3
+            "6.1.2.1",  # stsOutputVoltage1 (V)
+            "6.1.3.1",  # stsOutputCurrent1 (A)
+            "6.1.5.1",  # stsOutputPower1 (kVA)
+            "6.1.7.1",  # stsOutputPowerFactor
+            "6.1.2.2",  # stsOutputVoltage2 (V)
+            "6.1.3.2",  # stsOutputCurrent2 (A)
+            "6.1.5.2",  # stsOutputPower2 (kVA)
+            "6.1.7.2",  # stsOutputPowerFactor
+            "6.1.2.3",  # stsOutputVoltage3 (V)
+            "6.1.3.3",  # stsOutputCurrent3 (A)
+            "6.1.5.3",  # stsOutputPower3 (kVA)
+            "6.1.7.3",  # stsOutputPowerFactor
         ],
     ),
     "snmp_scan_function": lambda oid: "Transferschalter" in oid(".1.3.6.1.2.1.1.5.0"),
