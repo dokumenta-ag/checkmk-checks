@@ -28,7 +28,7 @@ def parse_ups_sts_outphase(info):
             "voltage": int(info[0][6]),
             "current": int(info[0][7]),
             "power": int(info[0][8]),
-            "output_load": int((info[0][7]) / 300)*100,    
+            "output_load": int((info[0][7]) / 300)*100,
         }
 
         parsed["Phase 3"] = {
