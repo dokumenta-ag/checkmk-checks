@@ -12,64 +12,35 @@ factory_settings["ups_socomecsts_outphase_default_levels"] = {}
 
 
 def parse_ups_sts_outphase(info):
+ try:
     parsed = {}
     parsed["Phase 1"] = {
         "frequency": int(info[0][1]) / 10.0,
-    except ValueError:
-        pass
         "voltage": int(info[0][3]),
-    except ValueError:
-        pass
         "current": int(info[0][4]),
-    except ValueError:
-        pass
         "power": int(info[0][5]),
-    except ValueError:
-        pass
         "output_load": int((info[0][6]) / 300)*100,
-    except ValueError:
-        pass
     }
 
     if info[0][2] == "3":
         parsed["Phase 2"] = {
             "frequency": int(info[0][1]) / 10.0,
-        except ValueError:
-            pass
             "voltage": int(info[0][6]),
-        except ValueError:
-            pass
             "current": int(info[0][7]),
-        except ValueError:
-            pass
             "power": int(info[0][8]),
-        except ValueError:
-            pass
-            "output_load": int((info[0][7]) / 300)*100,
-        except ValueError:
-            pass
-        
+            "output_load": int((info[0][7]) / 300)*100,    
         }
 
         parsed["Phase 3"] = {
             "frequency": int(info[0][1]) / 10.0,
-        except ValueError:
-            pass
             "voltage": int(info[0][9]),
-        except ValueError:
-            pass
             "current": int(info[0][10]),
-        except ValueError:
-            pass
             "power": int(info[0][11]),
-        except ValueError:
-            pass
             "output_load": int((info[0][10]) / 300)*100,
-        except ValueError:
-            pass
         }
-
-    return parsed
+ except ValueError:
+      pass
+      return parsed
 
 
 check_info["ups_sts_outphase"] = {
