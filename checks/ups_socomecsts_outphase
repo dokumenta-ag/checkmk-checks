@@ -14,28 +14,28 @@ factory_settings["ups_socomecsts_outphase_default_levels"] = {}
 def parse_ups_sts_outphase(info):
     parsed = {}
     parsed["Phase 1"] = {
-        "frequency": int(info[0][2]) / 10,
-        "voltage": int(info[0][5]),
-        "current": int(info[0][6]),
-        "power": int(info[0][7]),
-        #"output_load": int(info[0][6]),
+        "frequency": int(info[0][1]) / 10.0,
+        "voltage": int(info[0][3]),
+        "current": int(info[0][4]),
+        "power": int(info[0][5]),
+        "output_load": int((info[0][6]) / 300)*100,
     }
 
-    if info[0][4] == "3":
+    if info[0][2] == "3":
         parsed["Phase 2"] = {
-            "frequency": int(info[0][2]) / 10,
-            "voltage": int(info[0][8]),
-            "current": int(info[0][9]),
-            "power": int(info[0][10]),
-            #"output_load": int(info[0][10]),
+            "frequency": int(info[0][1]) / 10.0,
+            "voltage": int(info[0][6]),
+            "current": int(info[0][7]),
+            "power": int(info[0][8]),
+            "output_load": int((info[0][7]) / 300)*100,
         }
 
         parsed["Phase 3"] = {
-            "frequency": int(info[0][2]) / 10,
-            "voltage": int(info[0][11]),
-            "current": int(info[0][12]),
-            "power": int(info[0][13]),
-            #"output_load": int(info[0][14]),
+            "frequency": int(info[0][1]) / 10.0,
+            "voltage": int(info[0][9]),
+            "current": int(info[0][10]),
+            "power": int(info[0][11]),
+            "output_load": int((info[0][10]) / 300)*100,
         }
 
     return parsed
@@ -52,10 +52,8 @@ check_info["ups_sts_outphase"] = {
     "snmp_info": (
         ".1.3.6.1.4.1.4555.1.1.10.1.5",
         [
-            "1",  # stsOutputLoadStatus
             "2",  # stsOutputStatus
             "3",  # stsOutputFrequency
-            "4",  # stsOutputLoadRate
             "5",  # stsOutputNumLines
             "6.1.2.1",  # stsOutputVoltage1
             "6.1.3.1",  # stsOutputCurrent1
