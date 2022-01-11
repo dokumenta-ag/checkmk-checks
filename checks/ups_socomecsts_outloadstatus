@@ -10,12 +10,12 @@ def inventory_ups_socomecsts_loadstatus(info):
 def check_ups_socomecsts_loadstatus(_no_item, _no_params, info):
 
     ups_socomecsts_source_states = {
-        1: (3, "Standby"),
-        2: (2, "none"),
-        3: (0, "Normal"),
-        4: (1, "Internal Maintenance Bypass"),
-        5: (2, "On battery"),
-        6: (0, "Booster"),
+        1: (3, "Unknown"),
+        2: (0, "Load on preferred source"),
+        3: (0, "Load on alternate source"),
+        4: (2, "Load OFF"),
+        5: (2, "Load on manual by-pass 1"),
+        6: (0, "Load on manual by-pass 2"),
     }
 
     return ups_socomecsts_source_states[int(info[0][0])]
