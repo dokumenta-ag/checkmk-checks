@@ -19,6 +19,8 @@ def parse_ups_sts_outphase(info):
         "current": int(info[0][4]),
         "power": int(info[0][5]),
         "output_load": int((info[0][6]) / 300)*100,
+        except ValueError:
+        pass
     }
 
     if info[0][2] == "3":
@@ -28,6 +30,9 @@ def parse_ups_sts_outphase(info):
             "current": int(info[0][7]),
             "power": int(info[0][8]),
             "output_load": int((info[0][7]) / 300)*100,
+            except ValueError:
+            pass
+        
         }
 
         parsed["Phase 3"] = {
@@ -36,6 +41,8 @@ def parse_ups_sts_outphase(info):
             "current": int(info[0][10]),
             "power": int(info[0][11]),
             "output_load": int((info[0][10]) / 300)*100,
+            except ValueError:
+            pass
         }
 
     return parsed
