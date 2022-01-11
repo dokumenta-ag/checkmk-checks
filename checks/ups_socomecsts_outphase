@@ -17,7 +17,7 @@ def parse_ups_sts_outphase(info):
         "frequency": int(info[1][1]) // 10,
         "voltage": int(info[0][3]),
         "current": int(info[0][4]),
-        "power": int(info[0][5]), * 1000
+        "power": int(info[0][5]) * 1000,
         "output_load": int(info[0][4]) * 100 / 300,
     }
 
@@ -26,7 +26,7 @@ def parse_ups_sts_outphase(info):
             "frequency": int(info[1][1]) // 10,
             "voltage": int(info[0][6]),
             "current": int(info[0][7]),
-            "power": int(info[0][8]), * 1000
+            "power": int(info[0][8]) * 1000,
             "output_load": int(info[0][7]) * 100 / 300,
         }
 
@@ -34,7 +34,7 @@ def parse_ups_sts_outphase(info):
             "frequency": int(info[1][1]) // 10,
             "voltage": int(info[0][9]),
             "current": int(info[0][10]),
-            "power": int(info[0][11]), * 1000
+            "power": int(info[0][11]) * 1000,
             "output_load": int(info[0][10]) * 100 / 300,
         }
     return parsed
