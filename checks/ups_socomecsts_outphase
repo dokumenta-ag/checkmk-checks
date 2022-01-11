@@ -39,8 +39,8 @@ def parse_ups_sts_outphase(info):
             "output_load": int((info[0][10]) / 300)*100,
         }
  except ValueError:
-      pass
-      return parsed
+    pass
+    return parsed
 
 
 check_info["ups_sts_outphase"] = {
