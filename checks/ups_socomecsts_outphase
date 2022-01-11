@@ -14,7 +14,7 @@ factory_settings["ups_socomecsts_outphase_default_levels"] = {}
 def parse_ups_sts_outphase(info):
     parsed = {}
     parsed["Phase 1"] = {
-        "frequency": int((info[0][1]) / 10.0,
+        "frequency": int(info[0][1]) / 10.0,
         "voltage": int(info[0][3]),
         "current": int(info[0][4]),
         "power": int(info[0][5]),
