@@ -105,7 +105,7 @@ def inventory_ups_delphys_battery_volt(info):
 
 def check_ups_delphys_battery_volt(item, params, info):
     for _condition, _elapsed_sec, _remaining_min, _capacity, voltage, _temperature in info:
-        return check_temperature(int(voltage), params, "ups_delphys_battery_volt_%s" % item)
+        return check_voltage(int(voltage), params, "ups_delphys_battery_volt_%s" % item)
 
 
 check_info["ups_delphys_battery.volt"] = {
@@ -119,13 +119,13 @@ check_info["ups_delphys_battery.volt"] = {
 
 ####################################### Temperatur##################################################################
 def inventory_ups_delphys_battery_temp(info):
-    for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
+    for _condition, _elapsed_sec, _remaining_min, _capacity, _voltage, temperature in info:
         if temperature:
             yield "Battery", {}
 
 
 def check_ups_delphys_battery_temp(item, params, info):
-    for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
+    for _condition, _elapsed_sec, _remaining_min, _capacity, _voltage, temperature in info:
         return check_temperature(int(temperature) / 10, params, "ups_delphys_battery_temp_%s" % item)
 
 
