@@ -96,26 +96,6 @@ check_info["ups_delphys_battery"] = {
     "snmp_scan_function": lambda oid: "DELPHYS_GP_2.0" in oid(".1.3.6.1.2.1.1.5.0"),
 }
 
-def inventory_ups_delphys_battery_volt(info):
-    for _condition, _elapsed_sec, _remaining_min, _capacity, _temperature, voltage in info:
-        if voltage:
-            yield "Battery", {}
-
-
-def check_ups_delphys_battery_volt(item, params, info):
-    for _condition, _elapsed_sec, _remaining_min, _capacity, _temperature, voltage in info:
-        return check_voltage(int(voltage), params, "ups_delphys_battery_volt_%s" % item)
-
-
-check_info["ups_delphys_battery.volt"] = {
-    "inventory_function": inventory_ups_delphys_battery_volt,
-    "check_function": check_ups_delphys_battery_volt,
-    "has_perfdata": True,
-    "service_description": "UPS %s Voltage",
-    "group": "evolt",
-    "default_levels_variable": "ups_delphys_battery_volt_default_levels",
-}
-
 def inventory_ups_delphys_battery_temp(info):
     for _condition, _elapsed_sec, _remaining_min, _capacity, _voltage, temperature in info:
         if temperature:
