@@ -100,7 +100,7 @@ check_info["ups_delphys_battery"] = {
 def inventory_ups_delphys_battery_volt(info):
     for _condition, _elapsed_sec, _remaining_min, _capacity, voltage, _temperature in info:
         if voltage:
-            yield "Battery", {}
+            yield "Batv", {}
 
 
 def check_ups_delphys_battery_volt(item, params, info):
