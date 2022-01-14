@@ -18,7 +18,7 @@ def inventory_ups_delphys_battery(info):
 def check_ups_delphys_battery(item, params, info):
     warn_left, crit_left = params["battime"]
     warn_perc, crit_perc = params["capacity"]
-    for condition, elapsed_sec, remaining_min, capacity, _voltage, _temperature in info:
+    for condition, elapsed_sec, remaining_min, capacity, _temperature in info:
         condition, elapsed_sec, capacity = [int(x) for x in (condition, elapsed_sec, capacity)]
         if elapsed_sec == 0:
             # not on battery so the it will not run out
@@ -89,7 +89,6 @@ check_info["ups_delphys_battery"] = {
             "2",  # adicomUpsSecondsOnBattery
             "3",  # adicomUpsEstimatedMinutesRemaining
             "4",  # adicomUpsEstimatedChargeRemaining
-            "5",  # adicomUpsBatteryVoltage
             "6",  # adicomUpsBatteryTemperature
         ],
     ),
@@ -97,13 +96,13 @@ check_info["ups_delphys_battery"] = {
 }
 
 def inventory_ups_delphys_battery_temp(info):
-    for _condition, _elapsed_sec, _remaining_min, _capacity, _voltage, temperature in info:
+    for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
         if temperature:
             yield "Battery", {}
 
 
 def check_ups_delphys_battery_temp(item, params, info):
-    for _condition, _elapsed_sec, _remaining_min, _capacity, _voltage, temperature in info:
+    for _condition, _elapsed_sec, _remaining_min, _capacity, temperature in info:
         return check_temperature(int(temperature) / 10, params, "ups_delphys_battery_temp_%s" % item)
 
 
